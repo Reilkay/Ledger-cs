@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EC1197C0-B4CA-4010-AC31-25950F7FFB46}</ProjectGuid>
+    <ProjectGuid>{2FDD5E19-62F0-487B-B708-725AC801A08F}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6968b3a4-1835-46a3-ac5c-1ae33b475983}</TemplateGuid>
     <OutputType>Library</OutputType>
@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ledger\Ledger.csproj">
-      <Project>{4D37AB26-DDE5-44A4-8379-63406E0A3F37}</Project>
+      <Project>{19F82E16-8761-4B06-89AF-DBF80EFBC052}</Project>
       <Name>Ledger</Name>
     </ProjectReference>
   </ItemGroup>

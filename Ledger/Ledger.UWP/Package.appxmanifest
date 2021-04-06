@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="ac0284c1-34a2-4f13-8034-547a787eba45"
-    Publisher="CN=9b8d850d-89c2-4607-a4a8-204f7db6e677"
+    Name="c61d43a9-2f22-412e-bebf-45ab393445f9"
+    Publisher="CN=ed49acbb-5e4f-4335-bcc3-c91828455ad5"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Ledger.UWP</DisplayName>
-    <PublisherDisplayName>9b8d850d-89c2-4607-a4a8-204f7db6e677</PublisherDisplayName>
+    <PublisherDisplayName>ed49acbb-5e4f-4335-bcc3-c91828455ad5</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
