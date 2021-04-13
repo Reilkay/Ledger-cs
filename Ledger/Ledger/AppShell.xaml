@@ -30,16 +30,13 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="About" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
-    </TabBar>
+        <ShellContent Title="概览" Icon="icon_overview.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
 
-    <!--
-        If you would like to navigate to this content you can do so by calling
-        await Shell.Current.GoToAsync("//LoginPage");
-    -->
-    <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+        <ShellContent Title="明细" Icon="icon_detail.png" Route="DetailPage" ContentTemplate="{DataTemplate local:DetailPage}" />
+
+        <ShellContent Title="图表" Icon="icon_chart.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+
+        <ShellContent Title="设置" Icon="icon_setting.png" Route="SettingPage" ContentTemplate="{DataTemplate local:SettingPage}" />
     </TabBar>
 
 
