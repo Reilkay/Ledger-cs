@@ -63,6 +63,11 @@ namespace Ledger.Models
         public string Color =>
             _color ?? (_color = Budget == "收入" ? "green" : "red");
 
+        private string _money;
+
+        public string Money =>
+            _money ?? (_money = Budget == "收入" ? "+" + Amount : "-" + Amount);
+
         public const string Budgetexpense = "expense";
 
         public const string Budgetincome = "income";

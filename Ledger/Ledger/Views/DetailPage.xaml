@@ -5,6 +5,10 @@
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
              BindingContext="{Binding DetailViewModel, Source={StaticResource ViewModelLocator}}"
              x:Class="Ledger.Views.DetailPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
+    </ContentPage.ToolbarItems>
     
     <ContentPage.Behaviors>
         <b:EventHandlerBehavior EventName="Appearing">
@@ -23,9 +27,9 @@
             </ListView.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Amount}"
+                    <TextCell Text="{Binding Money}"
                               TextColor="{Binding Color}"
-                              Detail="{Binding Type}"
+                              Detail="{Binding  Content}"
                     />
                 </DataTemplate>
             </ListView.ItemTemplate>
