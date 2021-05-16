@@ -11,6 +11,7 @@ namespace Ledger.ViewModels
     {
         private string text;
         private string description;
+        public DateTime MinDate, MaxDate, SelectedDate;
 
         public NewRecordViewModel()
         {
@@ -18,6 +19,8 @@ namespace Ledger.ViewModels
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
+            MinDate = new DateTime(2000, 1, 1);
+            MaxDate = SelectedDate = DateTime.Today;
         }
 
         private bool ValidateSave()

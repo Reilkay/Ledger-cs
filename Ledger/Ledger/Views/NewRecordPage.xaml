@@ -9,13 +9,34 @@
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
+            <Label Text="金额" FontSize="Medium" />
             <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Description" FontSize="Medium" />
+            <Label Text="描述" FontSize="Medium" />
             <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Text="收支" FontSize="Medium" />
             <StackLayout Orientation="Horizontal">
-                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <RadioButton Content="支出" 
+                             IsChecked="true"/>
+                <RadioButton Content="收入" />
+            </StackLayout>
+            <Label Text="类型" FontSize="Medium" />
+            <StackLayout Orientation="Horizontal">
+                <RadioButton Content="餐饮" 
+                             IsChecked="true" />
+                <RadioButton Content="交通" />
+                <RadioButton Content="购物" />
+                <RadioButton Content="住宿" />
+                <RadioButton Content="娱乐" />
+                <RadioButton Content="其他" />
+            </StackLayout>
+            <Label Text="日期" FontSize="Medium" />
+            <DatePicker MinimumDate="{Binding MinDate}"
+                        MaximumDate="{Binding MaxDate}"
+                        Date="{Binding SelectedDate}" />
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="取消" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="保存" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
