@@ -9,8 +9,8 @@ namespace Ledger.ViewModels
 {
     public class NewRecordViewModel : BaseViewModel
     {
-        private string text;
-        private string description;
+        private string _text;
+        private string _description;
         public DateTime MinDate, MaxDate, SelectedDate;
 
         public NewRecordViewModel()
@@ -25,20 +25,20 @@ namespace Ledger.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(description);
+            return !String.IsNullOrWhiteSpace(_text)
+                && !String.IsNullOrWhiteSpace(_description);
         }
 
         public string Text
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => _text;
+            set => SetProperty(ref _text, value);
         }
 
         public string Description
         {
-            get => description;
-            set => SetProperty(ref description, value);
+            get => _description;
+            set => SetProperty(ref _description, value);
         }
 
         public Command SaveCommand { get; }

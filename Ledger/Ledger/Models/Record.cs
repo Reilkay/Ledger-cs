@@ -49,7 +49,7 @@ namespace Ledger.Models
         public int Day { get; set; }
 
         /// <summary>
-        /// 日
+        /// 收支
         /// </summary>
         [SQLite.Column("budget")]
         public string Budget { get; set; }
