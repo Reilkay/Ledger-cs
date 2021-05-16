@@ -7,7 +7,7 @@
              x:Class="Ledger.Views.DetailPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="Add" Command="{Binding AddRecordCommand}" />
     </ContentPage.ToolbarItems>
     
     <ContentPage.Behaviors>

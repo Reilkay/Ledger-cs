@@ -5,6 +5,7 @@ using Ledger.Services;
 using Ledger.Models;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 
 namespace Ledger.ViewModels {
@@ -14,6 +15,7 @@ namespace Ledger.ViewModels {
         public DetailPageViewModel(IRecordStorage recordStorage) {
             _recordStorage = recordStorage;
 
+            AddRecordCommand = new Command(OnAddRecord);
             RecordCollection = new InfiniteScrollCollection<Record>();
             RecordCollection.OnCanLoadMore = () => _canLoadMore;
             RecordCollection.OnLoadMore = async () => {
@@ -128,6 +130,13 @@ namespace Ledger.ViewModels {
         /// 没有更多结果。
         /// </summary>
         public const string NO_MORE_RESULT = "没有更多结果";
+
+        public Command AddRecordCommand { get; }
+
+        private async void OnAddRecord(object obj)
+        {
+            await Shell.Current.GoToAsync(nameof(Views.NewRecordPage));
+        }
 
         // ******** 私有变量
 

@@ -7,12 +7,12 @@ using Xamarin.Forms;
 
 namespace Ledger.ViewModels
 {
-    public class NewItemViewModel : BaseViewModel
+    public class NewRecordViewModel : BaseViewModel
     {
         private string text;
         private string description;
 
-        public NewItemViewModel()
+        public NewRecordViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
