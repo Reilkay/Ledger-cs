@@ -9,10 +9,10 @@
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
-            <Label Text="金额" FontSize="Medium" />
-            <Entry Text="{Binding Amount, Mode=TwoWay}" FontSize="Medium" />
             <Label Text="描述" FontSize="Medium" />
             <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Text="金额" FontSize="Medium" />
+            <Entry Text="{Binding Amount, Mode=TwoWay}" FontSize="Medium" />
             <Label Text="收支" FontSize="Medium" />
             <StackLayout Orientation="Horizontal" 
                          RadioButtonGroup.GroupName="IncomeExpenses"
@@ -34,7 +34,9 @@
             <Label Text="日期" FontSize="Medium" />
             <DatePicker MinimumDate="{Binding MinDate}"
                         MaximumDate="{Binding MaxDate}"
-                        Date="{Binding SelectedDate, Mode=TwoWay}" />
+                        Date="{Binding SelectedDate, Mode=TwoWay}" 
+                        Format="yyyyMMdd"
+                        HorizontalOptions="StartAndExpand"/>
 
             <StackLayout Orientation="Horizontal">
                 <Button Text="取消" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>

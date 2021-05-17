@@ -18,6 +18,7 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="120" />
+                <RowDefinition Height="35" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -36,6 +37,16 @@
                            VerticalOptions="Center" HorizontalTextAlignment="Start" HorizontalOptions="Center" />
                 </StackLayout>
             </StackLayout>
+            <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="CenterAndExpand">
+                <DatePicker Format="yyyyMM" 
+                            HorizontalOptions="Center" 
+                            MinimumDate="{Binding MinDate}"
+                            MaximumDate="{Binding MaxDate}"
+                            Date="{Binding SelectedDate, Mode=TwoWay}" />
+                <Button Text="切换" Command="{Binding SwitchCommand}" HorizontalOptions="Center"/>
+             </StackLayout>
+
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>
