@@ -29,7 +29,7 @@
                 <DataTemplate>
                     <TextCell Text="{Binding Money}"
                               TextColor="{Binding Color}"
-                              Detail="{Binding  Content}"
+                              Detail="{Binding  Describe}"
                     />
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -55,18 +55,18 @@ namespace Ledger.Models
         public string Budget { get; set; }
 
         private string _color;
+        private string _money;
+        private string _describe;
 
         /// <summary>
         /// 颜色
         /// </summary>
         [SQLite.Ignore]
-        public string Color =>
-            _color ?? (_color = Budget == "收入" ? "green" : "red");
+        public string Color => _color ??= Budget == "收入" ? "green" : "red";
 
-        private string _money;
+        public string Money => _money ??= Budget == "收入" ? "+" + Amount : "-" + Amount;
 
-        public string Money =>
-            _money ?? (_money = Budget == "收入" ? "+" + Amount : "-" + Amount);
+        public string Describe => _describe ??= $"{Year:0000}/{Month:00}/{Day:00} {Content}";
 
         public const string Budgetexpense = "expense";
 
