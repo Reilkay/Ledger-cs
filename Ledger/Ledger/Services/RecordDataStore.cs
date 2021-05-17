@@ -40,7 +40,7 @@ namespace Ledger.Services
 
         public async Task<bool> AddItemAsync(Record item) {
             Records.Add(item);
-
+            Connection.Insert(item);
             return await Task.FromResult(true);
         }
 
