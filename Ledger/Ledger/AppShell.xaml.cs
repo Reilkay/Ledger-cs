@@ -12,6 +12,7 @@ namespace Ledger
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(NewRecordPage), typeof(NewRecordPage));
+            Routing.RegisterRoute(nameof(RecordDetailPage),typeof(RecordDetailPage));
         }
 
     }

@@ -42,7 +42,7 @@ namespace Ledger.ViewModels {
             {
                 RecordCollection.Clear();
 
-                var items = await RDataStore.GetItemsAsync(true);
+                var items = await IDataStore.GetItemsAsync(true);
                 foreach (var record in RecordCollection)
                 {
                     RecordCollection.Add(record);

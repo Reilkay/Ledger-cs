@@ -32,12 +32,8 @@ namespace Ledger.ViewModels
             set => SetProperty(ref _type, value);
         }
 
-        public string RecordId
-        {
-            get
-            {
-                return _recordId;
-            }
+        public string RecordId {
+            get => _recordId;
             set
             {
                 _recordId = value;
@@ -47,10 +43,10 @@ namespace Ledger.ViewModels
         public async void LoadItemId(string recordId)
         {
             try {
-                //var record = await RecordStorage.GetItemAsync(recordId);
-                //Guid = record.Guid;
-                //Amount = record.Amount;
-                //Type = record.Type;
+                var record = await IDataStore.GetItemAsync(recordId);
+                Guid = record.Guid;
+                Amount = record.Amount;
+                Type = record.Type;
             }
             catch (Exception)
             {

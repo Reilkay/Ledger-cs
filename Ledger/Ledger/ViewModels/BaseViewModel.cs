@@ -10,9 +10,7 @@ namespace Ledger.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-
-        public IDataStore<Record> RDataStore => DependencyService.Get<IDataStore<Record>>();
+        public IDataStore<Record> IDataStore => DependencyService.Get<IDataStore<Record>>();
 
         bool isBusy = false;
         public bool IsBusy
