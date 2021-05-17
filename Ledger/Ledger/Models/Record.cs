@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SQLite;
 
 namespace Ledger.Models
 {
@@ -10,6 +11,7 @@ namespace Ledger.Models
         /// 主键
         /// </summary>
         [SQLite.Column("id")]
+        [PrimaryKey]
         public string Id { get; set; }
 
         /// <summary>

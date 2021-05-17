@@ -4,6 +4,10 @@
              x:Class="Ledger.Views.RecordDetailPage"
              BindingContext="{Binding RecordDetailPageViewModel, Source={StaticResource ViewModelLocator}}">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="删除" Command="{Binding DeleteRecordCommand}" />
+    </ContentPage.ToolbarItems>
+
     <StackLayout Spacing="20" Padding="15">
         <Label Text="Type:" FontSize="Medium" />
         <Label Text="{Binding Type}" FontSize="Small"/>

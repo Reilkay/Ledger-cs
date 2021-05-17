@@ -6,13 +6,14 @@ using GalaSoft.MvvmLight;
 using Ledger.Models;
 using Ledger.Services;
 using Ledger.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Ledger.ViewModels
 {
     [QueryProperty(nameof(RecordId), nameof(RecordId))]
     public class RecordDetailPageViewModel : BaseViewModel {
-
+        private Record record;
         private string _recordId;
         private float _amount;
         private string _type;
@@ -21,7 +22,16 @@ namespace Ledger.ViewModels
         private string _budget;
         private string _id;
 
-        //public string Guid { get; set; }
+        public Command DeleteRecordCommand { get; }
+
+        public RecordDetailPageViewModel() {
+            DeleteRecordCommand = new Command(OnDelete);
+        }
+
+        private async void OnDelete() {
+            await DataStore.DeleteItemAsync(record.Id);
+            await Shell.Current.GoToAsync("..");
+        }
 
         public float Amount
         {
@@ -71,7 +81,7 @@ namespace Ledger.ViewModels
         public async void LoadItemId(string recordId)
         {
             try {
-                var record = await DataStore.GetItemAsync(recordId);
+                record = await DataStore.GetItemAsync(recordId);
                 //Guid = record.Guid;
                 Id = record.Id;
                 Amount = record.Amount;
