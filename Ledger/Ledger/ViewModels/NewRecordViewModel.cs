@@ -14,7 +14,7 @@ namespace Ledger.ViewModels
         private string _description;
         private string _incomeExpenses;
         private string _type;
-        public DateTime MinDate, MaxDate, SelectedDate;
+        public DateTime _minDate, _maxDate, _selectedDate;
         private IDataStore<Record> _recordDataStore;
         public NewRecordViewModel(IDataStore<Record> recordDataStore) {
             _recordDataStore = recordDataStore;
@@ -22,8 +22,8 @@ namespace Ledger.ViewModels
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
-            MinDate = new DateTime(2000, 1, 1);
-            MaxDate = SelectedDate = DateTime.Today;
+            _minDate = new DateTime(2000, 1, 1);
+            _maxDate = _selectedDate = DateTime.Today;
         }
 
         private bool IsNumberic(string oText)
@@ -67,6 +67,24 @@ namespace Ledger.ViewModels
         {
             get => _type;
             set => SetProperty(ref _type, value);
+        }
+
+        public DateTime MinDate
+        {
+            get => _minDate;
+            set => SetProperty(ref _minDate, value);
+        }
+
+        public DateTime MaxDate
+        {
+            get => _maxDate;
+            set => SetProperty(ref _maxDate, value);
+        }
+
+        public DateTime SelectedDate
+        {
+            get => _selectedDate;
+            set => SetProperty(ref _selectedDate, value);
         }
 
         public Command SaveCommand { get; }
