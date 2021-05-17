@@ -9,8 +9,10 @@ namespace Ledger.ViewModels
 {
     public class NewRecordViewModel : BaseViewModel
     {
-        private string _text;
+        private string _amount;
         private string _description;
+        private string _incomeExpenses;
+        private string _type;
         public DateTime MinDate, MaxDate, SelectedDate;
 
         public NewRecordViewModel()
@@ -23,22 +25,35 @@ namespace Ledger.ViewModels
             MaxDate = SelectedDate = DateTime.Today;
         }
 
-        private bool ValidateSave()
-        {
-            return !String.IsNullOrWhiteSpace(_text)
-                && !String.IsNullOrWhiteSpace(_description);
+        private bool ValidateSave() {
+            return !String.IsNullOrWhiteSpace(_amount) &&
+                !String.IsNullOrWhiteSpace(_description) &&
+                !String.IsNullOrWhiteSpace(_incomeExpenses) &&
+                !String.IsNullOrWhiteSpace(_type);
         }
 
-        public string Text
+        public string Amount
         {
-            get => _text;
-            set => SetProperty(ref _text, value);
+            get => _amount;
+            set => SetProperty(ref _amount, value);
         }
 
         public string Description
         {
             get => _description;
             set => SetProperty(ref _description, value);
+        }
+
+        public string IncomeExpensesSelection 
+        {
+            get => _incomeExpenses;
+            set => SetProperty(ref _incomeExpenses, value);
+        }
+
+        public string Type 
+        {
+            get => _type;
+            set => SetProperty(ref _type, value);
         }
 
         public Command SaveCommand { get; }
@@ -52,13 +67,15 @@ namespace Ledger.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new Item()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
-            };
-
+            //Item newItem = new Item()
+            //{
+            //    Id = Guid.NewGuid().ToString(),
+            //    Text = Text,
+            //    Description = Description
+            //};
+            System.Diagnostics.Trace.WriteLine("shouru:"+IncomeExpensesSelection);
+            System.Diagnostics.Trace.WriteLine("leixing:"+Type);
+            System.Diagnostics.Trace.WriteLine(SelectedDate.Year+"/"+SelectedDate.Month+"/"+SelectedDate.Day);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
