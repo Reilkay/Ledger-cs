@@ -11,6 +11,7 @@ using Xamarin.Forms.Extended;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Ledger.ViewModels {
     public class DetailPageViewModel : BaseViewModel {
@@ -42,6 +43,9 @@ namespace Ledger.ViewModels {
             {
                 RecordCollection.Clear();
                 var records = await DataStore.GetItemsAsync(true);
+                records = records.OrderByDescending(p => p.Year).ThenByDescending(p => p.Month)
+                    .ThenByDescending(p => p.Day).ThenByDescending(p => p.Id);
+
                 foreach (var record in records)
                 {
                     RecordCollection.Add(record);
