@@ -84,7 +84,7 @@ namespace Ledger.ViewModels
             System.Diagnostics.Trace.WriteLine("leixing:"+Type);
             System.Diagnostics.Trace.WriteLine(SelectedDate.Year+"/"+SelectedDate.Month+"/"+SelectedDate.Day);
             Record newRecord = new Record() {
-                Id = _recordDataStore.GetMaxId()+1.ToString(),
+                Id = (_recordDataStore.GetMaxId()+1).ToString(),
                 Content = Description,
                 Amount = float.Parse(Amount),
                 Type = Type,

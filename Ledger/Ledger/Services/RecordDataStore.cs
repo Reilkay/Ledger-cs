@@ -48,14 +48,13 @@ namespace Ledger.Services
             var oldItem = Records.Where((Record arg) => arg.Id == item.Id).FirstOrDefault();
             Records.Remove(oldItem);
             Records.Add(item);
-
             return await Task.FromResult(true);
         }
 
         public async Task<bool> DeleteItemAsync(string id) {
             var oldItem = Records.Where((Record arg) => arg.Id == id).FirstOrDefault();
             Records.Remove(oldItem);
-
+            Connection.Delete(oldItem);
             return await Task.FromResult(true);
         }
 

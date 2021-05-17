@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Ledger.Views.RecordDetailPage"
              BindingContext="{Binding RecordDetailPageViewModel, Source={StaticResource ViewModelLocator}}">
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="删除" Command="{Binding DeleteRecordCommand}" />
+    </ContentPage.ToolbarItems>
     <StackLayout Spacing="20" Padding="25">
-        <!-- <Label Text="Type:" FontSize="Medium" /> -->
         <Label Text="{Binding Type}" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
         <StackLayout Orientation="Horizontal">
             <Label Text="类型:" FontSize="Medium" TextColor="Gray"/>
