@@ -24,14 +24,14 @@
 
             <StackLayout Grid.Row="0" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#3F539F">
                 <StackLayout Margin="0,0,15,0" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="End">
-                    <Label Text="当月花费" FontSize="Medium" TextColor="#FDD406" VerticalOptions="Center" HorizontalTextAlignment="Center" 
+                    <Label Text="{Binding TextLeft, Mode=TwoWay}" FontSize="Medium" TextColor="#FDD406" VerticalOptions="Center" HorizontalTextAlignment="Center" 
                            HorizontalOptions="End" />
                     <Label FontSize="Large" Text="{Binding Spent, StringFormat='￥{0:N}'}" TextColor="White" 
                            VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="Center" />
                 </StackLayout>
                 <BoxView Color="White" WidthRequest="1"></BoxView>
                 <StackLayout Margin="15,0,0,0" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
-                    <Label Text="当前剩余" FontSize="Medium" TextColor="#FDD406" VerticalOptions="Center" HorizontalTextAlignment="Center" 
+                    <Label Text="{Binding TextRight, Mode=TwoWay}" FontSize="Medium" TextColor="#FDD406" VerticalOptions="Center" HorizontalTextAlignment="Center" 
                            HorizontalOptions="Start" />
                     <Label FontSize="Large" TextColor="White" Text="{Binding Balance, StringFormat='￥{0:N}'}"
                            VerticalOptions="Center" HorizontalTextAlignment="Start" HorizontalOptions="Center" />

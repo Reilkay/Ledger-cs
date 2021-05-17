@@ -16,11 +16,14 @@ namespace Ledger.ViewModels
         private string _balance;
         private List<Record> _records;
         private DateTime _minDate, _maxDate, _selectedDate;
+        private string _textLeft, _textRight;
 
         public OverviewViewModel()
         {
             _minDate = new DateTime(2000, 1, 1);
             _maxDate = _selectedDate = DateTime.Today;
+            _textLeft = "当月支出";
+            _textRight = "当月剩余";
             SwitchCommand = new Command(OnDateSelected);
         }
 
@@ -34,6 +37,18 @@ namespace Ledger.ViewModels
         {
             get => _balance;
             set => SetProperty(ref _balance, value);
+        }
+
+        public string TextLeft
+        {
+            get => _textLeft;
+            set => SetProperty(ref _textLeft, value);
+        }
+
+        public string TextRight
+        {
+            get => _textRight;
+            set => SetProperty(ref _textRight, value);
         }
 
         public DateTime MinDate
@@ -71,11 +86,21 @@ namespace Ledger.ViewModels
         public void PageAppearingCommandFunction()
         {
             _selectedDate = DateTime.Today;
+            TextLeft = "当月支出";
+            TextRight = "当月剩余";
             FreshData();
         }
         
         private void FreshData() 
         {
+            if (_selectedDate.Year != DateTime.Today.Year ||
+                _selectedDate.Month != DateTime.Today.Month) {
+                TextLeft = _selectedDate.Year + "年" + _selectedDate.Month + "月支出";
+                TextRight = _selectedDate.Year + "年" + _selectedDate.Month + "月剩余";
+            } else {
+                TextLeft = "当月支出";
+                TextRight = "当月剩余";
+            }
             _records = DataStore.GetRecords();
             var _monthIncomeRecords = _records.Where(r =>
                 r.Year == _selectedDate.Year &&
