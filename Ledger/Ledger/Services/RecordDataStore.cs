@@ -26,7 +26,7 @@ namespace Ledger.Services
         private const string DbName = "recorddb.sqlite3";
 
         /// <summary>
-        /// 诗词数据库路径。
+        /// 数据库路径。
         /// </summary>
         public static readonly string RecordDbPath =
             Path.Combine(
