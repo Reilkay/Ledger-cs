@@ -77,9 +77,10 @@ namespace Ledger.ViewModels {
 
         /**
         private IRecordStorage _recordStorage;
+
         public DetailPageViewModel(IRecordStorage recordStorage) {
             _recordStorage = recordStorage;
-            
+
             RecordTapped = new Command<Record>(OnRecordSelected);
             RecordCollection = new InfiniteScrollCollection<Record>();
             RecordCollection.OnCanLoadMore = () => _canLoadMore;
@@ -117,7 +118,11 @@ namespace Ledger.ViewModels {
 
         public Command<Record> RecordTapped { get; }
 
-        
+        /// <summary>
+        /// 加载状态。
+        /// </summary>
+        private string _status;
+
         /// <summary>
         /// 查询语句。
         /// </summary>
@@ -130,7 +135,7 @@ namespace Ledger.ViewModels {
                 _newQuery = true;
             }
         }
-        
+
 
         /// <summary>
         /// 查询语句。
@@ -138,7 +143,7 @@ namespace Ledger.ViewModels {
         private Expression<Func<Record, bool>> _where;
 
         public InfiniteScrollCollection<Record> RecordCollection { get; }
-        
+
 
         /// <summary>
         /// 页面显示命令
@@ -153,7 +158,7 @@ namespace Ledger.ViewModels {
 
 
 
-        
+
         public async Task PageAppearingCommandFunction() {
             await _recordStorage.InitializeAsync();
 
@@ -188,6 +193,13 @@ namespace Ledger.ViewModels {
         /// 没有更多结果。
         /// </summary>
         public const string NO_MORE_RESULT = "没有更多结果";
+
+        public Command AddRecordCommand { get; }
+
+        private async void OnAddRecord(object obj)
+        {
+            await Shell.Current.GoToAsync(nameof(Views.NewRecordPage));
+        }
 
         // ******** 私有变量
 

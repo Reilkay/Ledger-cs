@@ -25,5 +25,6 @@ namespace Ledger.Views
             base.OnAppearing();
             //_detailPageViewModel.OnAppearing();
         }
+
     }
 }

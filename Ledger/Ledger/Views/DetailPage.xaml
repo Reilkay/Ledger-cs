@@ -8,8 +8,16 @@
              x:Class="Ledger.Views.DetailPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="记账" Command="{Binding AddRecordCommand}" />
     </ContentPage.ToolbarItems>
+    
+    <ContentPage.Behaviors>
+        <b:EventHandlerBehavior EventName="Appearing">
+            <b:ActionCollection>
+                <b:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </b:ActionCollection>
+        </b:EventHandlerBehavior>
+    </ContentPage.Behaviors>
     
     <ContentPage.Content>
         <ListView ItemsSource="{Binding RecordCollection}"
