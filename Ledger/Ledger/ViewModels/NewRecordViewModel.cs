@@ -26,11 +26,23 @@ namespace Ledger.ViewModels
             MaxDate = SelectedDate = DateTime.Today;
         }
 
+        private bool IsNumberic(string oText)
+        {
+            try {
+                float var1 = float.Parse(oText);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private bool ValidateSave() {
             return !String.IsNullOrWhiteSpace(_amount) &&
                 !String.IsNullOrWhiteSpace(_description) &&
                 !String.IsNullOrWhiteSpace(_incomeExpenses) &&
-                !String.IsNullOrWhiteSpace(_type);
+                !String.IsNullOrWhiteSpace(_type) && IsNumberic(_amount);
         }
 
         public string Amount
