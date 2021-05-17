@@ -68,6 +68,9 @@ namespace Ledger.Models
 
         public string Describe => _describe ??= $"{Year:0000}/{Month:00}/{Day:00} {Content}";
 
+        public string _guid;
+        public string Guid => _guid ??= System.Guid.NewGuid().ToString();
+
         public const string Budgetexpense = "expense";
 
         public const string Budgetincome = "income";

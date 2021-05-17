@@ -30,8 +30,8 @@
                 <DataTemplate>
                     <TextCell Text="{Binding Money}"
                               TextColor="{Binding Color}"
-                              Detail="{Binding  Content}"
-                              Command="{Binding Source={RelativeSource AncestorType={x:Type local:DetailPageViewModel}}, Path=RecordTapped}"	
+                              Detail="{Binding  Describe}"
+                              Command="{Binding Source={RelativeSource AncestorType={x:Type local:DetailPageViewModel}}, Path=RecordTappedCommand}"	
                               CommandParameter="{Binding}"
                     />
                 </DataTemplate>
