@@ -22,12 +22,8 @@ namespace Ledger.ViewModels {
         public Command LoadItemsCommand { get; }
         public Command AddRecordCommand { get; }
         public Command PageAppearingCommand { get; }
-
-        private IDataStore<Record> _recordDataStore;
-
-
+        
         public DetailPageViewModel(IDataStore<Record> recordDataStore) {
-            _recordDataStore = recordDataStore;
             RecordCollection = new ObservableCollection<Record>(recordDataStore.GetRecords());
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             RecordTappedCommand = new Command<Record>(OnRecordSelected);
