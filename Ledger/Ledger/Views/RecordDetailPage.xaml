@@ -4,17 +4,29 @@
              x:Class="Ledger.Views.RecordDetailPage"
              BindingContext="{Binding RecordDetailPageViewModel, Source={StaticResource ViewModelLocator}}">
 
-    <StackLayout Spacing="20" Padding="15">
-        <Label Text="Type:" FontSize="Medium" />
-        <Label Text="{Binding Type}" FontSize="Small"/>
-        <Label Text="Time:" FontSize="Medium" />
-        <Label Text="{Binding Time}" FontSize="Small"/>
-        <Label Text="Content:" FontSize="Medium" />
-        <Label Text="{Binding Content}" FontSize="Small"/>
-        <Label Text="Budget:" FontSize="Medium" />
-        <Label Text="{Binding Budget}" FontSize="Small"/>
-        <Label Text="Amount:" FontSize="Medium" />
-        <Label Text="{Binding Amount}" FontSize="Small"/>
+    <StackLayout Spacing="20" Padding="25">
+        <!-- <Label Text="Type:" FontSize="Medium" /> -->
+        <Label Text="{Binding Type}" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="类型:" FontSize="Medium" TextColor="Gray"/>
+            <Label Text="{Binding Budget}" FontSize="Medium"/>
+        </StackLayout>
+        <Label HeightRequest="1" BackgroundColor="#E3E3E3" />
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Time:" FontSize="Medium" TextColor="Gray"/>
+            <Label Text="{Binding Time}" FontSize="Medium"/>
+        </StackLayout>
+        <Label HeightRequest="1" BackgroundColor="#E3E3E3" />
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Content:" FontSize="Medium" TextColor="Gray"/>
+            <Label Text="{Binding Content}" FontSize="Medium"/>
+        </StackLayout>
+        <Label HeightRequest="1" BackgroundColor="#E3E3E3" />
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Amount:" FontSize="Medium" TextColor="Gray"/>
+            <Label Text="{Binding Amount}" FontSize="Medium"/>
+        </StackLayout>
+        <Label HeightRequest="1" BackgroundColor="#E3E3E3" />
     </StackLayout>
 
 </ContentPage>
