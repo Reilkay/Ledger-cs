@@ -12,6 +12,8 @@ namespace Ledger.ViewModels
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
+        public IDataStore<Record> RDataStore => DependencyService.Get<IDataStore<Record>>();
+
         bool isBusy = false;
         public bool IsBusy
         {

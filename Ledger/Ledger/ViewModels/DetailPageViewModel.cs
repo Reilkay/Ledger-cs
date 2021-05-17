@@ -5,15 +5,82 @@ using Ledger.Services;
 using Ledger.Models;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Ledger.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.Extended;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Ledger.ViewModels {
-    public class DetailPageViewModel : ViewModelBase {
-        private IRecordStorage _recordStorage;
+    public class DetailPageViewModel : BaseViewModel {
 
+        private Record _selectedRecord;
+        public ObservableCollection<Record> RecordCollection { get; }
+        public Command<Record> RecordTappedCommand { get; }
+        public Command LoadItemsCommand { get; }
+        public Command AddItemCommand { get; }
+
+        private IDataStore<Record> _recordDataStore;
+
+        public DetailPageViewModel(IDataStore<Record> recordDataStore) {
+            _recordDataStore = recordDataStore;
+            RecordCollection = new ObservableCollection<Record>(recordDataStore.GetRecords());
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            RecordTappedCommand = new Command<Record>(OnRecordSelected);
+            AddItemCommand = new Command(OnAddItem);
+        }
+
+
+        async Task ExecuteLoadItemsCommand()
+        {
+            IsBusy = true;
+            try
+            {
+                RecordCollection.Clear();
+
+                var items = await RDataStore.GetItemsAsync(true);
+                foreach (var record in RecordCollection)
+                {
+                    RecordCollection.Add(record);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void OnAddItem(object obj)
+        {
+            await Shell.Current.GoToAsync(nameof(NewItemPage));
+        }
+
+        async void OnRecordSelected(Record record)
+        {
+            if (record == null)
+                return;
+
+            // This will push the ItemDetailPage onto the navigation stack
+            await Shell.Current.GoToAsync($"{nameof(RecordDetailPage)}?{nameof(RecordDetailPageViewModel.RecordId)}={record.Guid}");
+        }
+
+        public async Task OnAppearing()
+        {
+            IsBusy = true;
+            _selectedRecord = null;
+        }
+
+        /**
+        private IRecordStorage _recordStorage;
         public DetailPageViewModel(IRecordStorage recordStorage) {
             _recordStorage = recordStorage;
-
+            
+            RecordTapped = new Command<Record>(OnRecordSelected);
             RecordCollection = new InfiniteScrollCollection<Record>();
             RecordCollection.OnCanLoadMore = () => _canLoadMore;
             RecordCollection.OnLoadMore = async () => {
@@ -36,23 +103,21 @@ namespace Ledger.ViewModels {
                 return records;
             };
         }
+        async void OnRecordSelected(Record record)
+        {
+            if (record == null)
+                return;
+
+            // This will push the ItemDetailPage onto the navigation stack
+            await Shell.Current.GoToAsync($"{nameof(RecordDetailPage)}?{nameof(RecordDetailPageViewModel.RecordId)}={record.Guid}");
+        }
+
 
         // ******** 公开变量
 
-        /// <summary>
-        /// 加载状态。
-        /// </summary>
-        public string Status
-        {
-            get => _status;
-            set => Set(nameof(Status), ref _status, value);
-        }
+        public Command<Record> RecordTapped { get; }
 
-        /// <summary>
-        /// 加载状态。
-        /// </summary>
-        private string _status;
-
+        
         /// <summary>
         /// 查询语句。
         /// </summary>
@@ -65,6 +130,7 @@ namespace Ledger.ViewModels {
                 _newQuery = true;
             }
         }
+        
 
         /// <summary>
         /// 查询语句。
@@ -72,6 +138,7 @@ namespace Ledger.ViewModels {
         private Expression<Func<Record, bool>> _where;
 
         public InfiniteScrollCollection<Record> RecordCollection { get; }
+        
 
         /// <summary>
         /// 页面显示命令
@@ -85,15 +152,8 @@ namespace Ledger.ViewModels {
         new RelayCommand(async () => await PageAppearingCommandFunction());
 
 
-        public RelayCommand GetPageAppearingCommand() {
-            if (_recordStorage.IsInitialized()) {
-                return _pageAppearingCommand;
-            } else {
-                return _pageAppearingCommand = new RelayCommand(async () =>
-                    await PageAppearingCommandFunction());
-            }
-        }
 
+        
         public async Task PageAppearingCommandFunction() {
             await _recordStorage.InitializeAsync();
 
@@ -112,7 +172,7 @@ namespace Ledger.ViewModels {
         /// <summary>
         /// 一页显示的记录数量。
         /// </summary>
-        public const int PageSize = 800;
+        public const int PageSize = 1000;
 
         /// <summary>
         /// 正在载入。
@@ -137,6 +197,6 @@ namespace Ledger.ViewModels {
         private bool _newQuery;
 
         private bool _canLoadMore = true;
-
+        **/
     }
 }

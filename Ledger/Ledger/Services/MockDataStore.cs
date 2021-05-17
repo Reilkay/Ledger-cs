@@ -23,6 +23,10 @@ namespace Ledger.Services
             };
         }
 
+        public async Task InitializeAsync() {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> AddItemAsync(Item item)
         {
             items.Add(item);
@@ -56,5 +60,10 @@ namespace Ledger.Services
         {
             return await Task.FromResult(items);
         }
+
+        public List<Item> GetRecords() {
+            throw new NotImplementedException();
+        }
+
     }
 }

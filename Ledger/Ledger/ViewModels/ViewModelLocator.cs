@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using GalaSoft.MvvmLight.Ioc;
+using Ledger.Models;
 using Ledger.Services;
 
 namespace Ledger.ViewModels
@@ -14,8 +15,7 @@ namespace Ledger.ViewModels
             SimpleIoc.Default.GetInstance<DetailPageViewModel>();
 
         public ViewModelLocator() {
-            SimpleIoc.Default.Register<IPreferenceStorage, PreferenceStorage>();
-            SimpleIoc.Default.Register<IRecordStorage, RecordStorage>();
+            SimpleIoc.Default.Register<IDataStore<Record>, RecordDataStore>();
             SimpleIoc.Default.Register<DetailPageViewModel>();
         }
     }

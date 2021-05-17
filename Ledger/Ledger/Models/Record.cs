@@ -65,8 +65,17 @@ namespace Ledger.Models
 
         private string _money;
 
+        [SQLite.Ignore]
         public string Money =>
             _money ?? (_money = Budget == "收入" ? "+" + Amount : "-" + Amount);
+
+        private string _guid;
+
+        [SQLite.Ignore]
+        public string Guid =>
+            _guid ??= System.Guid.NewGuid().ToString();
+
+        //public string Guid { get; set; }
 
         public const string Budgetexpense = "expense";
 

@@ -3,20 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:local="clr-namespace:Ledger.ViewModels;assembly=Ledger"
              BindingContext="{Binding DetailViewModel, Source={StaticResource ViewModelLocator}}"
              x:Class="Ledger.Views.DetailPage">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
     </ContentPage.ToolbarItems>
-    
-    <ContentPage.Behaviors>
-        <b:EventHandlerBehavior EventName="Appearing">
-            <b:ActionCollection>
-                <b:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
-            </b:ActionCollection>
-        </b:EventHandlerBehavior>
-    </ContentPage.Behaviors>
     
     <ContentPage.Content>
         <ListView ItemsSource="{Binding RecordCollection}"
@@ -30,6 +23,8 @@
                     <TextCell Text="{Binding Money}"
                               TextColor="{Binding Color}"
                               Detail="{Binding  Content}"
+                              Command="{Binding Source={RelativeSource AncestorType={x:Type local:DetailPageViewModel}}, Path=RecordTapped}"	
+                              CommandParameter="{Binding}"
                     />
                 </DataTemplate>
             </ListView.ItemTemplate>
