@@ -12,7 +12,7 @@ using Xamarin.Essentials;
 namespace Ledger.Services
 {
     public class RecordDataStore : IDataStore<Record> {
-        public  List<Record> records;
+        public  List<Record> Records;
 
         private SQLiteConnection _connection;
 
@@ -35,11 +35,11 @@ namespace Ledger.Services
 
 
         public RecordDataStore() {
-            records = Connection.Table<Record>().ToList();
+            Records = Connection.Table<Record>().ToList();
         }
 
         //public async Task InitializeAsync() {
-           // records = await Connection.Table<Record>().ToListAsync();
+           // Records = await Connection.Table<Record>().ToListAsync();
         //}
 
 
@@ -50,38 +50,38 @@ namespace Ledger.Services
         **/
 
         public async Task<bool> AddItemAsync(Record item) {
-            records.Add(item);
+            Records.Add(item);
 
             return await Task.FromResult(true);
         }
 
         public async Task<bool> UpdateItemAsync(Record item) {
-            var oldItem = records.Where((Record arg) => arg.Id == item.Id).FirstOrDefault();
-            records.Remove(oldItem);
-            records.Add(item);
+            var oldItem = Records.Where((Record arg) => arg.Id == item.Id).FirstOrDefault();
+            Records.Remove(oldItem);
+            Records.Add(item);
 
             return await Task.FromResult(true);
         }
 
         public async Task<bool> DeleteItemAsync(string id) {
-            var oldItem = records.Where((Record arg) => arg.Id == id).FirstOrDefault();
-            records.Remove(oldItem);
+            var oldItem = Records.Where((Record arg) => arg.Id == id).FirstOrDefault();
+            Records.Remove(oldItem);
 
             return await Task.FromResult(true);
         }
 
         public async Task<Record> GetItemAsync(string id) {
-            List<Record> a = records;
-            return await Task.FromResult(records.FirstOrDefault(s => s.Id == id));
+            List<Record> a = Records;
+            return await Task.FromResult(Records.FirstOrDefault(s => s.Id == id));
         }
 
         public async Task<IEnumerable<Record>> GetItemsAsync(bool forceRefresh = false) {
 
-            return await Task.FromResult(records);
+            return await Task.FromResult(Records);
         }
 
         public List<Record> GetRecords() {
-            return records;
+            return Records;
         }
     }
 }
