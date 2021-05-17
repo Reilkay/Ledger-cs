@@ -12,8 +12,12 @@ namespace Ledger.ViewModels
         /// </summary>
         public DetailPageViewModel DetailViewModel =>
             SimpleIoc.Default.GetInstance<DetailPageViewModel>();
+
         public NewRecordViewModel NewRecordViewModel =>
             SimpleIoc.Default.GetInstance<NewRecordViewModel>();
+
+        public OverviewViewModel OverviewViewModel =>
+            SimpleIoc.Default.GetInstance<OverviewViewModel>();
 
         public ViewModelLocator() {
             SimpleIoc.Default.Register<IPreferenceStorage, PreferenceStorage>();
@@ -21,6 +25,7 @@ namespace Ledger.ViewModels
 
             SimpleIoc.Default.Register<DetailPageViewModel>();
             SimpleIoc.Default.Register<NewRecordViewModel>();
+            SimpleIoc.Default.Register<OverviewViewModel>();
         }
     }
 }
