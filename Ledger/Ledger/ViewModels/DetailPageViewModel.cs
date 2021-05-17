@@ -42,7 +42,7 @@ namespace Ledger.ViewModels {
             {
                 RecordCollection.Clear();
 
-                var items = await IDataStore.GetItemsAsync(true);
+                var items = await DataStore.GetItemsAsync(true);
                 foreach (var record in RecordCollection)
                 {
                     RecordCollection.Add(record);
@@ -67,9 +67,11 @@ namespace Ledger.ViewModels {
         {
             if (record == null)
                 return;
-
+            IEnumerable<Record> b = await DataStore.GetItemsAsync();
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(RecordDetailPage)}?{nameof(RecordDetailPageViewModel.RecordId)}={record.Guid}");
+            string a =
+                $"{nameof(RecordDetailPage)}?{nameof(RecordDetailPageViewModel.RecordId)}={record.Id}";
+            await Shell.Current.GoToAsync(a);
         }
 
         public Record SelectedRecord
@@ -87,141 +89,5 @@ namespace Ledger.ViewModels {
             IsBusy = true;
             SelectedRecord = null;
         }
-
-        /**
-        private IRecordStorage _recordStorage;
-
-        public DetailPageViewModel(IRecordStorage recordStorage) {
-            _recordStorage = recordStorage;
-
-            RecordTapped = new Command<Record>(OnRecordSelected);
-            RecordCollection = new InfiniteScrollCollection<Record>();
-            RecordCollection.OnCanLoadMore = () => _canLoadMore;
-            RecordCollection.OnLoadMore = async () => {
-                Status = Loading;
-                var records = await recordStorage.GetRecordsAsync(Where,
-                    RecordCollection.Count, PageSize);
-                Status = String.Empty;
-
-                if (records.Count < PageSize)
-                {
-                    _canLoadMore = false;
-                    Status = NO_MORE_RESULT;
-                }
-
-                if (RecordCollection.Count == 0 && records.Count == 0)
-                {
-                    Status = NO_RESULT;
-                }
-
-                return records;
-            };
-        }
-        async void OnRecordSelected(Record record)
-        {
-            if (record == null)
-                return;
-
-            // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(RecordDetailPage)}?{nameof(RecordDetailPageViewModel.RecordId)}={record.Guid}");
-        }
-
-
-        // ******** 公开变量
-
-        public Command<Record> RecordTapped { get; }
-
-        /// <summary>
-        /// 加载状态。
-        /// </summary>
-        private string _status;
-
-        /// <summary>
-        /// 查询语句。
-        /// </summary>
-        public Expression<Func<Record, bool>> Where
-        {
-            get => _where;
-            set
-            {
-                Set(nameof(Where), ref _where, value);
-                _newQuery = true;
-            }
-        }
-
-
-        /// <summary>
-        /// 查询语句。
-        /// </summary>
-        private Expression<Func<Record, bool>> _where;
-
-        public InfiniteScrollCollection<Record> RecordCollection { get; }
-
-
-        /// <summary>
-        /// 页面显示命令
-        /// </summary>
-        private RelayCommand _pageAppearingCommand;
-
-        /// <summary>
-        /// 页面显示命令
-        /// </summary>
-        public RelayCommand PageAppearingCommand => _pageAppearingCommand ??=
-        new RelayCommand(async () => await PageAppearingCommandFunction());
-
-
-
-
-        public async Task PageAppearingCommandFunction() {
-            await _recordStorage.InitializeAsync();
-
-            Where = Expression.Lambda<Func<Record, bool>>(
-                Expression.Constant(true),
-                Expression.Parameter(typeof(Record), "p"));
-
-            if (!_newQuery) return;
-            _newQuery = false;
-
-            RecordCollection.Clear();
-            _canLoadMore = true;
-            await RecordCollection.LoadMoreAsync();
-        }
-
-        /// <summary>
-        /// 一页显示的记录数量。
-        /// </summary>
-        public const int PageSize = 1000;
-
-        /// <summary>
-        /// 正在载入。
-        /// </summary>
-        public const string Loading = "正在载入";
-
-        /// <summary>
-        /// 没有满足条件的结果。
-        /// </summary>
-        public const string NO_RESULT = "没有满足条件的结果";
-
-        /// <summary>
-        /// 没有更多结果。
-        /// </summary>
-        public const string NO_MORE_RESULT = "没有更多结果";
-
-        public Command AddRecordCommand { get; }
-
-        private async void OnAddRecord(object obj)
-        {
-            await Shell.Current.GoToAsync(nameof(Views.NewRecordPage));
-        }
-
-        // ******** 私有变量
-
-        /// <summary>
-        /// 是否为新查询。
-        /// </summary>
-        private bool _newQuery;
-
-        private bool _canLoadMore = true;
-        **/
     }
 }

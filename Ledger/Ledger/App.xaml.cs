@@ -12,6 +12,7 @@ namespace Ledger
         public App()
         {
             InitializeComponent();
+            DependencyService.Register<RecordDataStore>();
             MainPage = new AppShell();
         }
 

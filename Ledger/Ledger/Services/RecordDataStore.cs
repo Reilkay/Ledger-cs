@@ -56,7 +56,7 @@ namespace Ledger.Services
         }
 
         public async Task<bool> UpdateItemAsync(Record item) {
-            var oldItem = records.Where((Record arg) => arg.Guid == item.Guid).FirstOrDefault();
+            var oldItem = records.Where((Record arg) => arg.Id == item.Id).FirstOrDefault();
             records.Remove(oldItem);
             records.Add(item);
 
@@ -64,14 +64,15 @@ namespace Ledger.Services
         }
 
         public async Task<bool> DeleteItemAsync(string id) {
-            var oldItem = records.Where((Record arg) => arg.Guid == id).FirstOrDefault();
+            var oldItem = records.Where((Record arg) => arg.Id == id).FirstOrDefault();
             records.Remove(oldItem);
 
             return await Task.FromResult(true);
         }
 
         public async Task<Record> GetItemAsync(string id) {
-            return await Task.FromResult(records.FirstOrDefault(s => s.Guid == id));
+            List<Record> a = records;
+            return await Task.FromResult(records.FirstOrDefault(s => s.Id == id));
         }
 
         public async Task<IEnumerable<Record>> GetItemsAsync(bool forceRefresh = false) {

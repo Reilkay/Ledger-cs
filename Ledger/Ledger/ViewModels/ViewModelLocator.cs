@@ -20,11 +20,15 @@ namespace Ledger.ViewModels
         public OverviewViewModel OverviewViewModel =>
             SimpleIoc.Default.GetInstance<OverviewViewModel>();
 
+        public RecordDetailPageViewModel RecordDetailPageViewModel =>
+            SimpleIoc.Default.GetInstance<RecordDetailPageViewModel>();
+
         public ViewModelLocator() {
             SimpleIoc.Default.Register<IDataStore<Record>, RecordDataStore>();
             SimpleIoc.Default.Register<DetailPageViewModel>();
             SimpleIoc.Default.Register<NewRecordViewModel>();
             SimpleIoc.Default.Register<OverviewViewModel>();
+            SimpleIoc.Default.Register<RecordDetailPageViewModel>();
         }
     }
 }

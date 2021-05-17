@@ -1,12 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Ledger.Views.RecordDetailPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="Ledger.Views.RecordDetailPage"
+             BindingContext="{Binding RecordDetailPageViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Type:" FontSize="Medium" />
+        <Label Text="{Binding Type}" FontSize="Small"/>
+        <Label Text="Time:" FontSize="Medium" />
+        <Label Text="{Binding Time}" FontSize="Small"/>
+        <Label Text="Content:" FontSize="Medium" />
+        <Label Text="{Binding Content}" FontSize="Small"/>
+        <Label Text="Budget:" FontSize="Medium" />
+        <Label Text="{Binding Budget}" FontSize="Small"/>
+        <Label Text="Amount:" FontSize="Medium" />
+        <Label Text="{Binding Amount}" FontSize="Small"/>
+    </StackLayout>
+
 </ContentPage>

@@ -10,7 +10,7 @@ namespace Ledger.Models
         /// 主键
         /// </summary>
         [SQLite.Column("id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 内容
@@ -64,15 +64,16 @@ namespace Ledger.Models
         [SQLite.Ignore]
         public string Color => _color ??= Budget == "收入" ? "green" : "red";
 
+        [SQLite.Ignore]
         public string Money => _money ??= Budget == "收入" ? "+" + Amount : "-" + Amount;
 
+        [SQLite.Ignore]
         public string Describe => _describe ??= $"{Year:0000}/{Month:00}/{Day:00} {Content}";
 
-        public string _guid;
-        public string Guid => _guid ??= System.Guid.NewGuid().ToString();
+        //private string _guid;
 
-        public const string Budgetexpense = "expense";
+        //[SQLite.Ignore]
+        //public string Guid => _guid ??= System.Guid.NewGuid().ToString();
 
-        public const string Budgetincome = "income";
     }
 }
