@@ -31,7 +31,7 @@ namespace Ledger.ViewModels {
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             RecordTappedCommand = new Command<Record>(OnRecordSelected);
             AddRecordCommand = new Command(OnAddItem);
-            PageAppearingCommand = new Command(OnAppearing);
+            PageAppearingCommand = new Command(OnAppearingAsync);
         }
 
 
@@ -41,9 +41,8 @@ namespace Ledger.ViewModels {
             try
             {
                 RecordCollection.Clear();
-
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var record in RecordCollection)
+                var records = await DataStore.GetItemsAsync(true);
+                foreach (var record in records)
                 {
                     RecordCollection.Add(record);
                 }
@@ -84,10 +83,10 @@ namespace Ledger.ViewModels {
             }
         }
 
-        public void OnAppearing()
-        {
+        public async void OnAppearingAsync() {
             IsBusy = true;
             SelectedRecord = null;
+            await ExecuteLoadItemsCommand();
         }
     }
 }

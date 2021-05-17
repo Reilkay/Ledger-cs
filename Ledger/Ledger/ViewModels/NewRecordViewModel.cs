@@ -2,21 +2,22 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Ledger.Services;
 using Xamarin.Forms;
 
 namespace Ledger.ViewModels
 {
-    public class NewRecordViewModel : BaseViewModel
-    {
+    public class NewRecordViewModel : BaseViewModel {
         private string _amount;
         private string _description;
         private string _incomeExpenses;
         private string _type;
         public DateTime MinDate, MaxDate, SelectedDate;
-
-        public NewRecordViewModel()
-        {
+        private IDataStore<Record> _recordDataStore;
+        public NewRecordViewModel(IDataStore<Record> recordDataStore) {
+            _recordDataStore = recordDataStore;
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
@@ -67,16 +68,20 @@ namespace Ledger.ViewModels
 
         private async void OnSave()
         {
-            //Item newItem = new Item()
-            //{
-            //    Id = Guid.NewGuid().ToString(),
-            //    Text = Text,
-            //    Description = Description
-            //};
             System.Diagnostics.Trace.WriteLine("shouru:"+IncomeExpensesSelection);
             System.Diagnostics.Trace.WriteLine("leixing:"+Type);
             System.Diagnostics.Trace.WriteLine(SelectedDate.Year+"/"+SelectedDate.Month+"/"+SelectedDate.Day);
-
+            Record newRecord = new Record() {
+                Id = _recordDataStore.GetMaxId()+1.ToString(),
+                Content = Description,
+                Amount = float.Parse(Amount),
+                Type = Type,
+                Budget = IncomeExpensesSelection,
+                Year = SelectedDate.Year,
+                Month = SelectedDate.Month,
+                Day = SelectedDate.Day
+            };
+            await DataStore.AddItemAsync(newRecord);
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }

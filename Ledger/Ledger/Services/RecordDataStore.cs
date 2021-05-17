@@ -38,17 +38,6 @@ namespace Ledger.Services
             Records = Connection.Table<Record>().ToList();
         }
 
-        //public async Task InitializeAsync() {
-           // Records = await Connection.Table<Record>().ToListAsync();
-        //}
-
-
-        /**
-        public bool IsInitialized() {
-            throw new NotImplementedException();
-        }
-        **/
-
         public async Task<bool> AddItemAsync(Record item) {
             Records.Add(item);
 
@@ -71,7 +60,6 @@ namespace Ledger.Services
         }
 
         public async Task<Record> GetItemAsync(string id) {
-            List<Record> a = Records;
             return await Task.FromResult(Records.FirstOrDefault(s => s.Id == id));
         }
 
@@ -83,5 +71,11 @@ namespace Ledger.Services
         public List<Record> GetRecords() {
             return Records;
         }
+
+        public int GetMaxId()
+        {
+            return Records.Max(t => int.Parse(t.Id));
+        }
     }
 }
+
