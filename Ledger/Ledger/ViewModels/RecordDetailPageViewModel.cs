@@ -11,6 +11,9 @@ using Xamarin.Forms;
 
 namespace Ledger.ViewModels
 {
+    /// <summary>
+    /// 记录详情页
+    /// </summary>
     [QueryProperty(nameof(RecordId), nameof(RecordId))]
     public class RecordDetailPageViewModel : BaseViewModel {
         private Record record;

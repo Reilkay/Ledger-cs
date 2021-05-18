@@ -15,13 +15,13 @@ namespace Ledger.Models
         public string Id { get; set; }
 
         /// <summary>
-        /// 内容
+        /// 账单描述内容
         /// </summary>
         [SQLite.Column("content")]
         public string Content { get; set; }
 
         /// <summary>
-        /// 类型
+        /// 记账类型
         /// </summary>
         [SQLite.Column("type")]
         public string Type { get; set; }
@@ -51,7 +51,7 @@ namespace Ledger.Models
         public int Day { get; set; }
 
         /// <summary>
-        /// 收支
+        /// 收支类型
         /// </summary>
         [SQLite.Column("budget")]
         public string Budget { get; set; }
@@ -66,16 +66,17 @@ namespace Ledger.Models
         [SQLite.Ignore]
         public string Color => _color ??= Budget == "收入" ? "green" : "red";
 
+        /// <summary>
+        /// 金额显示
+        /// </summary>
         [SQLite.Ignore]
         public string Money => _money ??= Budget == "收入" ? "+" + Amount : "-" + Amount;
 
+        /// <summary>
+        /// 描述显示
+        /// </summary>
         [SQLite.Ignore]
         public string Describe => _describe ??= $"{Year:0000}/{Month:00}/{Day:00} {Content}";
-
-        //private string _guid;
-
-        //[SQLite.Ignore]
-        //public string Guid => _guid ??= System.Guid.NewGuid().ToString();
 
     }
 }
