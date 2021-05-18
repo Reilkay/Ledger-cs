@@ -34,9 +34,7 @@
 
         <ShellContent Title="明细" Icon="icon_detail.png" Route="DetailPage" ContentTemplate="{DataTemplate local:DetailPage}" />
 
-        <ShellContent Title="图表" Icon="icon_chart.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-
-        <ShellContent Title="设置" Icon="icon_setting.png" Route="SettingPage" ContentTemplate="{DataTemplate local:SettingPage}" />
+        <ShellContent Title="关于" Icon="icon_setting.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </TabBar>
 
 

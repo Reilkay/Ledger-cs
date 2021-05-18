@@ -1,47 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BindingContext="{Binding AboutViewModel, Source={StaticResource ViewModelLocator}}"
              x:Class="Ledger.Views.AboutPage"
-             xmlns:vm="clr-namespace:Ledger.ViewModels"
              Title="{Binding Title}">
-    
-    <ContentPage.BindingContext>
-        <vm:AboutViewModel />
-    </ContentPage.BindingContext>
-    
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Color x:Key="Accent">#96d1ff</Color>
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
-                </ContentView>
-            </StackLayout>
-        </StackLayout>
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label Text="Start developing now" FontSize="Title"/>
-                <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="0,0,0,0"/>
-                <Label FontSize="16" Padding="0,24,0,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Learn more at "/>
-                                <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Button Margin="0,10,0,0" Text="Learn more"
+                <Label Text="Ledger" FontSize="30" HorizontalOptions="Center"/>
+                <Label Text="一款”极简风格“的跨平台记账软件" FontSize="16" Padding="0,0,0,0" HorizontalOptions="CenterAndExpand"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="开发者:  " FontSize="Small" TextColor="Gray"/>
+                    <Label Text="Reilkay，ShinyAkko" FontSize="Small"/>
+                </StackLayout>
+                <Label HeightRequest="1" BackgroundColor="#E3E3E3" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="版本:  " FontSize="Small" TextColor="Gray"/>
+                    <Label Text="v0.5.0" FontSize="Small"/>
+                </StackLayout>
+                <Label HeightRequest="1" BackgroundColor="#E3E3E3" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="项目地址:  " FontSize="Small" TextColor="Gray"/>
+                    <Label Text="https://gitee.com/reilkay-shinyakko/ledger" FontSize="Small"/>
+                </StackLayout>
+                <Label HeightRequest="1" BackgroundColor="#E3E3E3" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="开源协议:  " FontSize="Small" TextColor="Gray"/>
+                    <Label Text="AGPL-3.0" FontSize="Small"/>
+                </StackLayout>
+                <Label HeightRequest="1" BackgroundColor="#E3E3E3" />
+
+                <Button Margin="0,10,0,0" Text="更多"
                         Command="{Binding OpenWebCommand}"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />

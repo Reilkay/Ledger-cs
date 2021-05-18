@@ -9,8 +9,8 @@ namespace Ledger.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
-            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
+            Title = "关于";
+            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://gitee.com/reilkay-shinyakko/ledger"));
         }
 
         public ICommand OpenWebCommand { get; }
