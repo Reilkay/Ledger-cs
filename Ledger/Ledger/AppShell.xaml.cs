@@ -11,6 +11,7 @@ namespace Ledger
         public AppShell()
         {
             InitializeComponent();
+            //子页路径注册
             Routing.RegisterRoute(nameof(NewRecordPage), typeof(NewRecordPage));
             Routing.RegisterRoute(nameof(RecordDetailPage),typeof(RecordDetailPage));
         }

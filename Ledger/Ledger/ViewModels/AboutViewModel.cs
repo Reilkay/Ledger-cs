@@ -5,6 +5,9 @@ using Xamarin.Forms;
 
 namespace Ledger.ViewModels
 {
+    /// <summary>
+    /// 关于页
+    /// </summary>
     public class AboutViewModel : BaseViewModel
     {
         public AboutViewModel()

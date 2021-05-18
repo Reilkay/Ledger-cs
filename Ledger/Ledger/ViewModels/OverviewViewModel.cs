@@ -11,6 +11,9 @@ using Xamarin.Forms;
 
 namespace Ledger.ViewModels
 {
+    /// <summary>
+    /// 概览页
+    /// </summary>
     public class OverviewViewModel : BaseViewModel {
         private string _spent;
         private string _balance;
@@ -97,7 +100,7 @@ namespace Ledger.ViewModels
                 _selectedDate.Month != DateTime.Today.Month) {
                 TextLeft = _selectedDate.Year + "年" + _selectedDate.Month + "月支出";
                 TextRight = _selectedDate.Year + "年" + _selectedDate.Month + "月剩余";
-            } else {
+            } else{
                 TextLeft = "当月支出";
                 TextRight = "当月剩余";
             }
