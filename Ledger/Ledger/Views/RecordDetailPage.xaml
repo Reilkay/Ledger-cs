@@ -3,31 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Ledger.Views.RecordDetailPage"
              BindingContext="{Binding RecordDetailPageViewModel, Source={StaticResource ViewModelLocator}}">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="删除" Command="{Binding DeleteRecordCommand}" />
-    </ContentPage.ToolbarItems>
     <StackLayout Spacing="20" Padding="25">
         <Label Text="{Binding Type}" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
         <StackLayout Orientation="Horizontal">
-            <Label Text="类型:" FontSize="Medium" TextColor="Gray"/>
+            <Label Text="类型:  " FontSize="Medium" TextColor="Gray"/>
             <Label Text="{Binding Budget}" FontSize="Medium"/>
         </StackLayout>
         <Label HeightRequest="1" BackgroundColor="#E3E3E3" />
         <StackLayout Orientation="Horizontal">
-            <Label Text="Time:" FontSize="Medium" TextColor="Gray"/>
+            <Label Text="时间:  " FontSize="Medium" TextColor="Gray"/>
             <Label Text="{Binding Time}" FontSize="Medium"/>
         </StackLayout>
         <Label HeightRequest="1" BackgroundColor="#E3E3E3" />
         <StackLayout Orientation="Horizontal">
-            <Label Text="Content:" FontSize="Medium" TextColor="Gray"/>
+            <Label Text="内容:  " FontSize="Medium" TextColor="Gray"/>
             <Label Text="{Binding Content}" FontSize="Medium"/>
         </StackLayout>
         <Label HeightRequest="1" BackgroundColor="#E3E3E3" />
         <StackLayout Orientation="Horizontal">
-            <Label Text="Amount:" FontSize="Medium" TextColor="Gray"/>
+            <Label Text="金额:  " FontSize="Medium" TextColor="Gray"/>
             <Label Text="{Binding Amount}" FontSize="Medium"/>
         </StackLayout>
         <Label HeightRequest="1" BackgroundColor="#E3E3E3" />
+        <Button Text="删除" Command="{Binding DeleteRecordCommand}" />
     </StackLayout>
 
 </ContentPage>

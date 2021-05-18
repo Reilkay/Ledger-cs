@@ -35,6 +35,11 @@ namespace Ledger.Services
 
 
         public RecordDataStore() {
+            RefreshRecords();
+        }
+
+        private void RefreshRecords() 
+        {
             Records = Connection.Table<Record>().ToList();
         }
 
@@ -71,8 +76,8 @@ namespace Ledger.Services
             return Records;
         }
 
-        public int GetMaxId()
-        {
+        public int GetMaxId() {
+            RefreshRecords();
             return Records.Max(t => int.Parse(t.Id));
         }
     }

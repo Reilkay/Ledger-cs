@@ -112,6 +112,10 @@ namespace Ledger.ViewModels
                 Day = SelectedDate.Day
             };
             await DataStore.AddItemAsync(newRecord);
+            _amount = null;
+            _description = null;
+            _incomeExpenses = null;
+            _type = null;
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }
